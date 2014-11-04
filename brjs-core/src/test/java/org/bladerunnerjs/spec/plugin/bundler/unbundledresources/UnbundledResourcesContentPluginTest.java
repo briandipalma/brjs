@@ -11,7 +11,7 @@ import org.bladerunnerjs.model.App;
 import org.bladerunnerjs.model.Aspect;
 import org.bladerunnerjs.model.Blade;
 import org.bladerunnerjs.model.Bladeset;
-import org.bladerunnerjs.model.Workbench;
+import org.bladerunnerjs.model.BladeWorkbench;
 import org.bladerunnerjs.model.exception.request.ContentProcessingException;
 import org.bladerunnerjs.plugin.ContentPlugin;
 import org.bladerunnerjs.testing.specutility.engine.SpecTest;
@@ -38,7 +38,7 @@ public class UnbundledResourcesContentPluginTest extends SpecTest {
 	private File workbenchUnbundledResources;
 	private Bladeset bladeset;	
 	private Blade blade;
-	private Workbench workbench;
+	private BladeWorkbench workbench;
 	
 	@Before
 	public void initTestObjects() throws Exception

@@ -17,7 +17,7 @@ import org.bladerunnerjs.model.BundleSet;
 import org.bladerunnerjs.model.RequestMode;
 import org.bladerunnerjs.model.UrlContentAccessor;
 import org.bladerunnerjs.model.ParsedContentPath;
-import org.bladerunnerjs.model.Workbench;
+import org.bladerunnerjs.model.BladeWorkbench;
 import org.bladerunnerjs.model.exception.request.ContentProcessingException;
 import org.bladerunnerjs.model.exception.request.MalformedTokenException;
 import org.bladerunnerjs.plugin.BinaryResponseContent;
@@ -112,7 +112,7 @@ public class UnbundledResourcesContentPlugin extends AbstractContentPlugin
     		else if (contentPath.formName.equals(WORKBENCH_UNBUNDLED_RESOURCES_REQUEST)
       				 || contentPath.formName.equals(WORKBENCH_VERSIONED_UNBUNDLED_RESOURCES_REQUEST))
    	   		{    			
-   	   			Workbench workbench = bundleSet.getBundlableNode().app().bladeset(contentPath.properties.get("bladeset")).blade(contentPath.properties.get("blade")).workbench();
+    			BladeWorkbench workbench = bundleSet.getBundlableNode().app().bladeset(contentPath.properties.get("bladeset")).blade(contentPath.properties.get("blade")).workbench();
    	   			return getFileContents(bundleSet, contentPath, contentAccessor, workbench);
    	   		}
 			else {
@@ -181,9 +181,9 @@ public class UnbundledResourcesContentPlugin extends AbstractContentPlugin
 	    			requestPaths.add( contentPathParser.createRequest(BLADE_UNBUNDLED_RESOURCES_REQUEST, bladeset.getName(), blade.getName(), relativePath) );
 	    			requestPaths.add( contentPathParser.createRequest(BLADE_VERSIONED_UNBUNDLED_RESOURCES_REQUEST, bladeset.getName(), blade.getName(), relativePath) );
 				}
-				if (assetContainer instanceof Workbench)
+				if (assetContainer instanceof BladeWorkbench)
 				{
-					Workbench workbench = (Workbench) assetContainer;
+					BladeWorkbench workbench = (BladeWorkbench) assetContainer;
 					Blade blade = brjs.locateAncestorNodeOfClass(workbench, Blade.class);
 					Bladeset bladeset = brjs.locateAncestorNodeOfClass(blade, Bladeset.class);
 	    			requestPaths.add( contentPathParser.createRequest(WORKBENCH_UNBUNDLED_RESOURCES_REQUEST, bladeset.getName(), blade.getName(), relativePath) );
