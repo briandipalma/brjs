@@ -7,7 +7,7 @@ import org.bladerunnerjs.memoization.MemoizedFile;
 import org.bladerunnerjs.model.engine.Node;
 import org.bladerunnerjs.model.engine.RootNode;
 
-public final class BladeWorkbench extends Workbench
+public final class BladeWorkbench extends Workbench<Blade>
 {
 	
 	public BladeWorkbench(RootNode rootNode, Node parent, MemoizedFile dir)
