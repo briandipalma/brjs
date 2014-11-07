@@ -114,7 +114,7 @@ public class TemplateTests extends SpecTest
 		when(brjs).runCommand("create-bladeset", "app", "bs");
 		then(bladeset).hasFilesAndDirs(
 				Arrays.asList("src/BsClass.js", "themes/common/style.css", "workbench/index.html", "workbench/resources/aliases.xml", "workbench/resources/i18n/en.properties", "workbench/resources/style/workbench.css"),
-				Arrays.asList("resources", "resources/html", "src", "test-unit", "themes")
+				Arrays.asList("resources", "resources/html", "src", "test-unit", "themes", "workbench")
 		).and(bladeset).fileContentsContains("resources/i18n/en.properties", "appns.bs.hello.world");
 	}
 	

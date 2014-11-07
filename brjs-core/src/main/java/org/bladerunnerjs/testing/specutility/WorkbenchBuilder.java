@@ -5,6 +5,8 @@ import org.bladerunnerjs.testing.specutility.engine.BuilderChainer;
 import org.bladerunnerjs.testing.specutility.engine.BundlableNodeBuilder;
 import org.bladerunnerjs.testing.specutility.engine.SpecTest;
 
+import com.google.common.base.Joiner;
+
 public class WorkbenchBuilder extends BundlableNodeBuilder<Workbench<?>> 
 {
 	private final Workbench<?> workbench;
