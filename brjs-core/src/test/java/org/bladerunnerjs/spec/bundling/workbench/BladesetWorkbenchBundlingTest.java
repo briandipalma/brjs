@@ -1,8 +1,6 @@
 package org.bladerunnerjs.spec.bundling.workbench;
 
 import org.bladerunnerjs.model.App;
-import org.bladerunnerjs.model.Aspect;
-import org.bladerunnerjs.model.Blade;
 import org.bladerunnerjs.model.Bladeset;
 import org.bladerunnerjs.model.BladesetWorkbench;
 import org.bladerunnerjs.model.JsLib;
@@ -13,14 +11,11 @@ import org.junit.Test;
 
 public class BladesetWorkbenchBundlingTest extends SpecTest {
 	private App app;
-	private Aspect aspect;
 	private Bladeset bladeset;
-	private Blade blade;
 	private BladesetWorkbench workbench;
-	private JsLib thirdpartyLib, brjsLib, appLib;
+	private JsLib brjsLib;
 	private NamedDirNode workbenchTemplate;
 	private StringBuffer response;
-	private JsLib bootstrapLib;
 	
 	@Before
 	public void initTestObjects() throws Exception
@@ -30,15 +25,10 @@ public class BladesetWorkbenchBundlingTest extends SpecTest {
 			.and(brjs).hasBeenCreated();
 
 		app = brjs.app("app1");
-		aspect = app.aspect("default");
 		bladeset = app.bladeset("bs");
-		blade = bladeset.blade("b1");
 		workbench = bladeset.workbench();
-		workbenchTemplate = brjs.template("workbench");
+		workbenchTemplate = brjs.confTemplateGroup("default").template("workbench");
 		brjsLib = brjs.sdkLib("br");
-		thirdpartyLib = brjs.sdkLib("thirdparty-lib1");
-		appLib = app.jsLib("appLib");
-		bootstrapLib = brjs.sdkLib("br-bootstrap");
 		
 		response = new StringBuffer();
 

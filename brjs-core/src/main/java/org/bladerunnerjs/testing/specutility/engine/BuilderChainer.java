@@ -18,7 +18,6 @@ import org.bladerunnerjs.model.JsLib;
 import org.bladerunnerjs.model.NamedDirNode;
 import org.bladerunnerjs.model.TemplateGroup;
 import org.bladerunnerjs.model.TestPack;
-import org.bladerunnerjs.model.BladeWorkbench;
 import org.bladerunnerjs.model.Workbench;
 import org.bladerunnerjs.model.engine.NamedNode;
 import org.bladerunnerjs.plugin.EventObserver;
