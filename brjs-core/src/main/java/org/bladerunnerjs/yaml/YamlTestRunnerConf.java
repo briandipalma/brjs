@@ -24,6 +24,7 @@ public class YamlTestRunnerConf extends AbstractYamlConfFile {
 		browserPaths.put("windows", new HashMap<String, String>());
 		browserPaths.put("mac", new HashMap<String, String>());
 		browserPaths.put("linux", new HashMap<String, String>());
+		browserPaths.put("linux64", new HashMap<String, String>());
 	}
 	
 	@Override
