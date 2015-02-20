@@ -58,7 +58,7 @@ public class XMLContentPlugin extends AbstractContentPlugin
 			throw new MalformedRequestException(contentPath, "Requests must be for exactly '" + requestPaths.get(0) + "'.");
 		}
 		
-		XmlBundleWriter bundleWriter = new XmlBundleWriter(xmlBundlerConfig);
+		XmlBundleWriter bundleWriter = new XmlBundleWriter(bundleSet.getBundlableNode().root(), xmlBundlerConfig);
 		List<Asset> xmlAssets = bundleSet.getResourceFiles(xmlAssetPlugin);
 
 		try{

@@ -18,7 +18,9 @@ import javax.xml.stream.XMLStreamWriter;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bladerunnerjs.api.Asset;
+import org.bladerunnerjs.api.BRJS;
 import org.bladerunnerjs.api.aliasing.NamespaceException;
+import org.bladerunnerjs.api.logging.Logger;
 import org.bladerunnerjs.api.memoization.MemoizedFile;
 import org.bladerunnerjs.api.model.exception.RequirePathException;
 import org.bladerunnerjs.api.model.exception.request.ContentFileProcessingException;
@@ -28,9 +30,11 @@ public class XmlBundleWriter
 {
 	private boolean outputContinuously = false;
 	private XmlBundlerConfig xmlBundlerConfig = null;
+	private final Logger logger;
 
-	public XmlBundleWriter(XmlBundlerConfig xmlBundlerConfig) 
+	public XmlBundleWriter(BRJS brjs, XmlBundlerConfig xmlBundlerConfig) 
 	{
+		logger = brjs.logger(this.getClass());
 		this.xmlBundlerConfig  = xmlBundlerConfig;
 	}
 	
@@ -74,7 +78,7 @@ public class XmlBundleWriter
 							siblingReader.close();
 						}
 						catch(XMLStreamException e) {
-							System.out.println("bingo!");
+							logger.warn("Unable to close XML reader for file '%s'.", siblingReader.getFilePath());
 						}
 					}
 				}
@@ -132,7 +136,7 @@ public class XmlBundleWriter
 			MemoizedFile document = xmlAsset.dir().file(xmlAsset.getAssetName());
 			try{
 				Reader bundlerFileReader = xmlAsset.getReader();
-				XmlSiblingReader siblingReader = new XmlSiblingReader(inputFactory.createXMLStreamReader(bundlerFileReader));
+				XmlSiblingReader siblingReader = new XmlSiblingReader(inputFactory.createXMLStreamReader(bundlerFileReader), bundlerFileReader, xmlAsset.getAssetPath());
 				siblingReader.setAsset(xmlAsset);
 				
 				siblingReader.setXmlDocument(document);

@@ -1,5 +1,8 @@
 package org.bladerunnerjs.plugin.bundlers.xml;
 
+import java.io.IOException;
+import java.io.Reader;
+
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.stream.Location;
 import javax.xml.stream.XMLStreamException;
@@ -18,11 +21,15 @@ public class XmlSiblingReader
 	private int depth = 1;
 	private MemoizedFile document;
 	private Asset xmlAsset;
+	private Reader underlyingReader;
+	private String filePath;
 	
-	public XmlSiblingReader(XMLStreamReader streamReader) throws XMLStreamException
+	public XmlSiblingReader(XMLStreamReader streamReader, Reader underlyingReader, String filePath) throws XMLStreamException
 	{
 		streamReader.nextTag();
 		this.streamReader = new PeekableXmlStreamReader(streamReader);
+		this.underlyingReader = underlyingReader;
+		this.filePath = filePath;
 	}
 	
 	private XmlSiblingReader(XmlSiblingReader parent, PeekableXmlStreamReader streamReader)
@@ -262,6 +269,15 @@ public class XmlSiblingReader
 	public void close() throws XMLStreamException
 	{
 		streamReader.close();
+		
+		if(underlyingReader != null) {
+			try {
+				underlyingReader.close();
+			}
+			catch(IOException e) {
+				throw new XMLStreamException(e);
+			}
+		}
 	}
 	
 	private void incrementDepth()
@@ -282,5 +298,9 @@ public class XmlSiblingReader
 		{
 			parent.decrementDepth();
 		}
+	}
+
+	public String getFilePath() {
+		return filePath;
 	}
 }
