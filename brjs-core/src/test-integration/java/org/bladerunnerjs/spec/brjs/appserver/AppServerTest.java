@@ -194,7 +194,7 @@ public class AppServerTest extends SpecTest
 	}
 	
 	@Test
-	public void newAppsAreAutomaticallyHostedWhenRunningCreateAppCommandFromADifferentModelInstance() throws Exception
+	public void newAppsAreAutomaticallyHostedWhenRunningCreateAppCommandFromADifferentModelInstance_andUsingTheWatchingModificationObserverThread() throws Exception
 	{
 		given(brjs).hasBeenAuthenticallyCreatedWithFileWatcherThread()
 			.and(brjs.applicationServer(appServerPort)).started();
@@ -203,9 +203,29 @@ public class AppServerTest extends SpecTest
 	}
 	
 	@Test
-	public void newAppsAreHostedOnAppserverAfterServerRestartWhenCreateAppCommandUsedFromADifferentModelInstance() throws Exception
+	public void newAppsAreHostedOnAppserverAfterServerRestartWhenCreateAppCommandUsedFromADifferentModelInstance_andUsingTheWatchingModificationObserverThread() throws Exception
 	{
 		given(brjs).hasBeenAuthenticallyCreatedWithFileWatcherThread()
+			.and(brjs.applicationServer(appServerPort)).started();
+		when(secondBrjsProcess).runCommand("create-app", "app1", "blah")
+			.and(brjs.applicationServer(appServerPort)).stopped()
+			.and(brjs.applicationServer(appServerPort)).started();
+		then(appServer).requestCanEventuallyBeMadeFor("/app1/");
+	}
+	
+	@Test
+	public void newAppsAreAutomaticallyHostedWhenRunningCreateAppCommandFromADifferentModelInstance_andUsingThePollingModificationObserverThread() throws Exception
+	{
+		given(brjs).hasBeenAuthenticallyCreatedWithFilePollingThread()
+			.and(brjs.applicationServer(appServerPort)).started();
+		when(secondBrjsProcess).runCommand("create-app", "app1", "blah");
+		then(appServer).requestCanEventuallyBeMadeFor("/app1/");
+	}
+	
+	@Test
+	public void newAppsAreHostedOnAppserverAfterServerRestartWhenCreateAppCommandUsedFromADifferentModelInstance_andUsingThePollingModificationObserverThread() throws Exception
+	{
+		given(brjs).hasBeenAuthenticallyCreatedWithFilePollingThread()
 			.and(brjs.applicationServer(appServerPort)).started();
 		when(secondBrjsProcess).runCommand("create-app", "app1", "blah")
 			.and(brjs.applicationServer(appServerPort)).stopped()

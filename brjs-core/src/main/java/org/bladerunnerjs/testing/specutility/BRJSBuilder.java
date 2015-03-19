@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.naming.InvalidNameException;
 
+import org.bladerunnerjs.memoization.PollingFileModificationObserverThread;
 import org.bladerunnerjs.memoization.WatchingFileModificationObserverThread;
 import org.bladerunnerjs.memoization.WatchKeyServiceFactory;
 import org.bladerunnerjs.model.BRJS;
@@ -273,6 +274,15 @@ public class BRJSBuilder extends NodeBuilder<BRJS> {
 	{
 		hasBeenAuthenticallyCreated();
 		specTest.fileWatcherThread = new WatchingFileModificationObserverThread(brjs, new WatchKeyServiceFactory());
+		specTest.fileWatcherThread.start();
+		
+		return builderChainer;
+	}
+	
+	public BuilderChainer hasBeenAuthenticallyCreatedWithFilePollingThread() throws Exception
+	{
+		hasBeenAuthenticallyCreated();
+		specTest.fileWatcherThread = new PollingFileModificationObserverThread(brjs);
 		specTest.fileWatcherThread.start();
 		
 		return builderChainer;
