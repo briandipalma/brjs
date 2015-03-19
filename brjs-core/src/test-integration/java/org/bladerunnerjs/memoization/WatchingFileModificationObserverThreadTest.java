@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static java.nio.file.StandardWatchEventKinds.*;
 
-public class FileModificationWatcherThreadTest
+public class WatchingFileModificationObserverThreadTest
 {	
 	private static final int MAX_UPDATE_CHECKS = 120; // 120 x 500ms (wait 1 minute before failing)
 	private static final int THREAD_SLEEP_INTEVAL = 500;
@@ -35,7 +35,7 @@ public class FileModificationWatcherThreadTest
 	private DefaultWatchKeyService mockWatchKeyService;
 	private FileModificationRegistry mockModificationRegistry;
 	private MemoizedFile rootWatchDir;
-	private FileModificationWatcherThread modificationWatcherThread;
+	private WatchingFileModificationObserverThread modificationWatcherThread;
 	private List<File> fileChanges = Collections.synchronizedList( new ArrayList<>() );
 	private File fileInRoot;
 	private File dirInRoot;
@@ -205,7 +205,7 @@ public class FileModificationWatcherThreadTest
 	
 	@Test // we use the package private methods on FileModificationWatcherThread here to avoid having a multithreaded test
 	public void usingTheRealWatchServiceDetectsFileChanges() throws Exception {
-		modificationWatcherThread = new FileModificationWatcherThread(mockBrjs, new WatchKeyServiceFactory());
+		modificationWatcherThread = new WatchingFileModificationObserverThread(mockBrjs, new WatchKeyServiceFactory());
 		
 		modificationWatcherThread.init();
 		
@@ -218,7 +218,7 @@ public class FileModificationWatcherThreadTest
 	
 	@Test // we use the package private methods on FileModificationWatcherThread here to avoid having a multithreaded test
 	public void usingTheRealWatchServiceDetectsFileNestedChanges() throws Exception {
-		modificationWatcherThread = new FileModificationWatcherThread(mockBrjs, new WatchKeyServiceFactory());
+		modificationWatcherThread = new WatchingFileModificationObserverThread(mockBrjs, new WatchKeyServiceFactory());
 		
 		modificationWatcherThread.init();
 		
@@ -261,7 +261,7 @@ public class FileModificationWatcherThreadTest
 	
 	private void createAndInitWatcher() throws IOException
 	{
-		modificationWatcherThread = new FileModificationWatcherThread(mockBrjs, mockWatchServiceFactory);
+		modificationWatcherThread = new WatchingFileModificationObserverThread(mockBrjs, mockWatchServiceFactory);
 		modificationWatcherThread.init();
 	}
 	

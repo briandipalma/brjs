@@ -14,9 +14,9 @@ import org.bladerunnerjs.model.BRJS;
 import static java.nio.file.StandardWatchEventKinds.*;
 
 
-public class FileModificationWatcherThread extends Thread
+public class WatchingFileModificationObserverThread extends Thread
 {
-	public static final String THREAD_IDENTIFIER = FileModificationWatcherThread.class.getSimpleName();
+	public static final String THREAD_IDENTIFIER = WatchingFileModificationObserverThread.class.getSimpleName();
 	
 	private Path directoryToWatch;
 	private FileModificationRegistry fileModificationRegistry;
@@ -30,7 +30,7 @@ public class FileModificationWatcherThread extends Thread
 	private Logger logger;
 
 	
-	public FileModificationWatcherThread(BRJS brjs, WatchKeyServiceFactory watchKeyServiceFactory) throws IOException
+	public WatchingFileModificationObserverThread(BRJS brjs, WatchKeyServiceFactory watchKeyServiceFactory) throws IOException
 	{
 		this.watchKeyServiceFactory = watchKeyServiceFactory;
 		this.fileModificationRegistry = brjs.getFileModificationRegistry();
