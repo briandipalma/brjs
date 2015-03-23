@@ -101,7 +101,7 @@ public class WebappTester
 		
 		httpResponse = httpClient.execute( get );
 		statusCode = httpResponse.getStatusLine().getStatusCode();
-		System.err.println("URL: " + url + "\nStatus code: " + statusCode);
+		System.out.println("URL: " + url + "\nStatus code: " + statusCode);
 		statusText = httpResponse.getStatusLine().getReasonPhrase();
 		response = EntityUtils.toString(httpResponse.getEntity());
 		contentType = ContentType.getOrDefault(httpResponse.getEntity()).getMimeType();
