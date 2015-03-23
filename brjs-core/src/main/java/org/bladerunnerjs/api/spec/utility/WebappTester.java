@@ -101,6 +101,7 @@ public class WebappTester
 		
 		httpResponse = httpClient.execute( get );
 		statusCode = httpResponse.getStatusLine().getStatusCode();
+		System.err.println("URL: " + url + "\nStatus code: " + statusCode);
 		statusText = httpResponse.getStatusLine().getReasonPhrase();
 		response = EntityUtils.toString(httpResponse.getEntity());
 		contentType = ContentType.getOrDefault(httpResponse.getEntity()).getMimeType();
@@ -140,6 +141,7 @@ public class WebappTester
 		{
 			try {
 				whenRequestMadeTo(url);
+				System.err.println(statusCode);
 			} catch (Exception ex) {
 				// do nothing
 			}
