@@ -112,6 +112,7 @@ subprojects { p ->
 			project.tasks.withType(Test) { testTask ->
 				test {
 					testLogging {
+						showStandardStreams = true
 						events 'skipped', 'failed'
 						exceptionFormat 'full'
 						info {
