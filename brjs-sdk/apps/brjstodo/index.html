@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<@base.tag@/>
+		<meta charset="UTF-8">
+
+		<title>My Application</title>
+
+		<@css.bundle theme="common"@/>
+
+	</head>
+	<body>
+		<section id="todoapp"></section>
+
+		<!-- dev-minifier can be set to "combined" for all JS content to be bundled with a single request -->
+		<@js.bundle dev-minifier="none" prod-minifier="combined"@/>
+		<script>
+			( function() {
+				var App = require( 'brjstodo/App' );
+				var app = new App();
+			} )();
+		</script>
+	</body>
+</html>

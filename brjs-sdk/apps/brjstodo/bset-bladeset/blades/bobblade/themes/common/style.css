@@ -1,0 +1,16 @@
+.bset-bobblade-blade {
+    padding:10px;
+    border:solid 1px black;
+    max-width: 350px;
+}
+.bset-bobblade-blade h1 {
+    border-bottom:solid 1px #ccc;
+    margin-bottom:3px;
+}
+.bset-bobblade-blade p {
+    line-height: 1.2;
+    padding: 4px 0;
+}
+.bset-bobblade-blade button {
+    margin-top: 5px;
+}
