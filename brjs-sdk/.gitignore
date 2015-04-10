@@ -8,6 +8,7 @@ apps/*
 brjs-apps/*
 !brjs-apps/apps.txt
 !brjs-apps/it-app/
+!apps/brjstodo
 generated
 js-patches
 test-results
