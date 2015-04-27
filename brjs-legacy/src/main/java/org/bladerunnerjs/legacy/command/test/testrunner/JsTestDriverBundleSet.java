@@ -20,9 +20,9 @@ public class JsTestDriverBundleSet implements BundleSet {
 	}
 	
 	@Override
-	public List<Asset> getAssets(String... prefixes)
+	public List<Asset> assets(String... prefixes)
 	{
-		return bundleSet.getAssets(prefixes);
+		return bundleSet.assets(prefixes);
 	}
 	
 	@Override

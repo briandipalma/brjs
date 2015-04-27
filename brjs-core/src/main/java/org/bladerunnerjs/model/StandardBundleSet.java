@@ -64,7 +64,7 @@ public class StandardBundleSet implements BundleSet {
 	}
 
 	@Override
-	public List<Asset> getAssets(String... prefixes)
+	public List<Asset> assets(String... prefixes)
 	{
 		return (List<Asset>) getTheAssets(assets, assetsByType, Arrays.asList(prefixes), null);
 	}
