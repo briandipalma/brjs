@@ -1,6 +1,7 @@
 package org.bladerunnerjs.utility.deps;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -82,7 +83,7 @@ public class DependencyGraphReportBuilder {
 	
 	private String createReport() throws ModelOperationException {
 		HashSet<LinkedAsset> processedAssets = new LinkedHashSet<>();
-		for(LinkedAsset linkedAsset : bundleSet.getLinkedAssets()) {
+		for(LinkedAsset linkedAsset : bundleSet.getAssets(Collections.emptyList(), LinkedAsset.class)) {
 			addDependency(linkedAsset, null, processedAssets, 1);
 		}
 		

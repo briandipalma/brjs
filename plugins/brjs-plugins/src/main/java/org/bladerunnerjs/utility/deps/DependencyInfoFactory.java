@@ -1,6 +1,7 @@
 package org.bladerunnerjs.utility.deps;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -50,7 +51,7 @@ public class DependencyInfoFactory {
 		
 		addSeedDependencies(dependencyAdder, bundlableNode, dependencyInfo);
 		
-		for(LinkedAsset asset : bundleSet.getLinkedAssets()) {
+		for(LinkedAsset asset : bundleSet.getAssets(Collections.emptyList(), LinkedAsset.class)) {
 			addAssetDependencies(dependencyAdder, bundlableNode, dependencyInfo, asset);
 		}
 		
