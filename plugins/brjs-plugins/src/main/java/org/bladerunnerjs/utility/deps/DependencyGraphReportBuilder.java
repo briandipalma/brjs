@@ -83,7 +83,7 @@ public class DependencyGraphReportBuilder {
 	
 	private String createReport() throws ModelOperationException {
 		HashSet<LinkedAsset> processedAssets = new LinkedHashSet<>();
-		for(LinkedAsset linkedAsset : bundleSet.getAssets(Collections.emptyList(), LinkedAsset.class)) {
+		for(LinkedAsset linkedAsset : bundleSet.getAssets(LinkedAsset.class, Collections.emptyList())) {
 			addDependency(linkedAsset, null, processedAssets, 1);
 		}
 		
