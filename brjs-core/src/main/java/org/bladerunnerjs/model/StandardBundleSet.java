@@ -31,7 +31,7 @@ public class StandardBundleSet implements BundleSet {
 	}
 	
 	@Override
-	public BundlableNode getBundlableNode() {
+	public BundlableNode bundlableNode() {
 		return bundlableNode;
 	}
 	
