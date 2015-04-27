@@ -63,15 +63,15 @@ public class StandardBundleSet implements BundleSet {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <AT extends Asset> List<AT> getAssets(Class<? extends AT> assetType, List<String> prefixes)
+	public <AT extends Asset> List<AT> getAssets(Class<? extends AT> assetType, String... prefixes)
 	{
-		return (List<AT>) getTheAssets(assets, assetsByType, prefixes, Arrays.asList(assetType));
+		return (List<AT>) getTheAssets(assets, assetsByType, Arrays.asList(prefixes), Arrays.asList(assetType));
 	}
 	
 	@Override
-	public List<Asset> getAssets(List<String> prefixes, List<Class<? extends Asset>> assetTypes)
+	public List<Asset> getAssets(List<Class<? extends Asset>> assetTypes, String... prefixes)
 	{
-		return (List<Asset>) getTheAssets(assets, assetsByType, prefixes, assetTypes);
+		return (List<Asset>) getTheAssets(assets, assetsByType, Arrays.asList(prefixes), assetTypes);
 	}
 	
 	private static <AT extends Asset> List<AT> getTheAssets(List<AT> assets, Map<List<Class<? extends AT>>, List<AT>> assetsByType, 
